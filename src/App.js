@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import styles from './App.css';
+import Searchbar from './components/Searchbar';
 
 export default function Transactions() {
   const [userTransactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
-   const apiURL = "http://localhost:4001/transactions"
+  const apiURL = "http://localhost:4001/transactions"
 
   useEffect(() => {
   fetch(apiURL)
@@ -12,27 +13,37 @@ export default function Transactions() {
   .then(data => {
     console.log(data)
     setTransactions(data)
+    setFilteredTransactions(data)
   })
 },[])
     
-  return (
-    <>
-    <h1>User Transactions</h1>
-    <ul>
-     {userTransactions.map(transaction => (
-       <li key={transaction.id}>
-          <p>Date: {transaction.date}</p>
-          <p>Description: {transaction.description}</p>
-          <p>Category: {transaction.category}</p>
-          <p>Amount: {transaction.amount}</p> 
-          <hr />
-       </li>
-     ))}
-    </ul>
-    
-    </>
-  );
+  const handleSearch = (query) => {
+    const filtered = userTransactions.filter((transaction) =>
+    transaction.description.toLowerCase().includes(query.toLowerCase())
+  )
+  setFilteredTransactions(filtered);
+}
 
+  return (
+   <>
+   <h1 id="heading">User Transactions</h1>
+   <Searchbar onSearch={handleSearch}/>
+   <ul id="table">
+    {filteredTransactions.map(transaction => (
+      <li key={transaction.id}>
+         <h4>Date: {transaction.date}</h4>
+         <p>Description: {transaction.description}</p>
+         <p>Category: {transaction.category}</p>
+         <p>Amount: {transaction.amount}</p> 
+         <hr />
+      </li>
+    ))}
+   </ul>
+   <form>
+
+   </form>
+   </>
+  );
   }
 
 
