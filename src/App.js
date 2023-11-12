@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Searchbar from './components/Searchbar';
+import Form from './components/Form';
 
 export default function Transactions() {
   const [userTransactions, setTransactions] = useState([]);
@@ -23,7 +24,10 @@ export default function Transactions() {
   )
   setFilteredTransactions(filtered);
 }
-
+  const handleAddTransactions = (newTransaction) => {
+    setTransactions([...userTransactions, newTransaction]);
+  }
+  
   return (
    <>
    <h1 id="heading">User Transactions</h1>
@@ -38,12 +42,8 @@ export default function Transactions() {
          <hr />
       </li>
     ))}
+    <Form onAddTransaction={handleAddTransactions} />
    </ul>
-   <form>
-
-   </form>
    </>
   );
   }
-
-
