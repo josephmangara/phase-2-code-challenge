@@ -26,6 +26,7 @@ export default function Transactions() {
 }
   const handleAddTransactions = (newTransaction) => {
     setTransactions([...userTransactions, newTransaction]);
+    setFilteredTransactions([...userTransactions, newTransaction]);
   }
   
   return (
