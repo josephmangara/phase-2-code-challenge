@@ -1,22 +1,38 @@
+import React, { useEffect, useState } from 'react';
+import styles from './App.css';
 
-import React, { useState, useEffect } from "react";
-
-function App() {
+export default function Transactions() {
   const [userTransactions, setTransactions] = useState([]);
 
+   const apiURL = "http://localhost:4001/transactions"
+
   useEffect(() => {
-    fetch("http://localhost:3006/transactions")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setTransactions(Transactions);
-      });
-  }, []);
+  fetch(apiURL)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    setTransactions(data)
+  })
+},[])
+    
+  return (
+   <>
+   <h1>User Transactions</h1>
+   <ul>
+    {userTransactions.map(transaction => (
+      <li key={transaction.id}>
+         <p>Date: {transaction.date}</p>
+         <p>Description: {transaction.description}</p>
+         <p>Category: {transaction.category}</p>
+         <p>Amount: {transaction.amount}</p> 
+         <hr />
+      </li>
+    ))}
+   </ul>
+   
+   </>
+  );
 
-  return 
-  <div>
-    {userTransactions}
-  </div>;
-}
+  }
 
-export default App;
+
