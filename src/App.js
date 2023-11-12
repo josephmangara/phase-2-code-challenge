@@ -43,6 +43,7 @@ export default function Transactions() {
       </li>
     ))}
     <Form onAddTransaction={handleAddTransactions} />
+    <p id='track'>Keep track with my app</p>
    </ul>
    </>
   );

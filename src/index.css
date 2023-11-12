@@ -25,4 +25,10 @@ code {
   margin-left: 10px;
   margin-right: 5px;
 }
+#track {
+  text-align: center;
+}
 
+.form {
+  margin-left: 10px;
+}
