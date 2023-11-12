@@ -16,21 +16,21 @@ export default function Transactions() {
 },[])
     
   return (
-   <>
-   <h1>User Transactions</h1>
-   <ul>
-    {userTransactions.map(transaction => (
-      <li key={transaction.id}>
-         <p>Date: {transaction.date}</p>
-         <p>Description: {transaction.description}</p>
-         <p>Category: {transaction.category}</p>
-         <p>Amount: {transaction.amount}</p> 
-         <hr />
-      </li>
-    ))}
-   </ul>
-   
-   </>
+    <>
+    <h1>User Transactions</h1>
+    <ul>
+     {userTransactions.map(transaction => (
+       <li key={transaction.id}>
+          <p>Date: {transaction.date}</p>
+          <p>Description: {transaction.description}</p>
+          <p>Category: {transaction.category}</p>
+          <p>Amount: {transaction.amount}</p> 
+          <hr />
+       </li>
+     ))}
+    </ul>
+    
+    </>
   );
 
   }
